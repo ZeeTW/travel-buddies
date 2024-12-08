@@ -1,0 +1,17 @@
+<body>
+  <%- include('../partials/_navbar.ejs') %>
+
+  <h1>A Trip in <%= post.country %>, <%= post.city %></h1>
+
+  <h2>Details</h2>
+  <p>Price: $ <%= post.price %></p>
+  <p>Duration: <%= post.duration %></p>
+
+  <h2>User details:</h2>
+
+  <p>Username: <%= post.owner.username %></p>
+  <p>Age: <%= post.owner.age %></p>
+  <p>Nationality: <%= post.owner.nationality %></p>
+
+
+</body>

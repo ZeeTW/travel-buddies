@@ -17,7 +17,7 @@ const hashedPassword = bcrypt.hashSync(req.body.password, 10)
 req.body.password = hashedPassword
 
     const user = await User.create(req.body)
-    res.send(`Thanks for signing up, ${user.username}`)
+    res.redirect('/')
 
     
 
