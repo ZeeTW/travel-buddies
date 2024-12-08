@@ -28,6 +28,7 @@ app.use(
   })
 );
 app.use(passUsertoView)
+app.use(methodOverride('_method'))
 
 
 const authCtrl = require('./controllers/auth')

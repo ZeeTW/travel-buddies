@@ -32,4 +32,16 @@ router.get('/:postId', async(req,res)=>{
   res.render('posts/show.ejs', {post})
 })
 
+//delete functionality
+router.delete('/:postId', async(req,res)=>{
+  const post = await Post.findById(req.params.postId)
+
+  if(post.owner.equals(req.session.user._id)){
+    await post.deleteOne()
+    res.redirect('/posts')
+  } else {
+    res.send('you dont have permission')
+  }
+})
+
 module.exports = router

@@ -13,5 +13,9 @@
   <p>Age: <%= post.owner.age %></p>
   <p>Nationality: <%= post.owner.nationality %></p>
 
-
+  <% if(post.owner._id.equals(user._id)){ %>
+    <form action="/posts/<%= post._id %>?_method=DELETE" method="post">
+      <button type="submit">Delete this post</button>
+    </form>
+    <% } %>
 </body>
