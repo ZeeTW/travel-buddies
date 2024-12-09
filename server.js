@@ -22,7 +22,7 @@ mongoose.connection.on('connected', () => {
 
 app.use(
   session({
-    secret: process.env.SESSION_SECRET,
+    secret: process.env.SESSIONS_SECRET,
     resave: false,
     saveUninitialized: true,
   })
