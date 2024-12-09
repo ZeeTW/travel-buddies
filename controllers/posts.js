@@ -44,4 +44,10 @@ router.delete('/:postId', async(req,res)=>{
   }
 })
 
+//edit posting
+router.get('/:postId/edit', async(req,res)=>{
+  const post = await Post.findById(req.params.postId)
+  res.render('posts/edit.ejs', {post})
+})
+
 module.exports = router
