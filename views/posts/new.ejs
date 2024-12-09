@@ -1,19 +1,21 @@
 <body>
   <%- include('../partials/_navbar.ejs') %>
   <h1>Add a new post!</h1>
-  <form action="/posts" method="post">
+  <form action="/posts" method="post" enctype="multipart/form-data">
     <label for="country">Country:</label>
-    <input type="text" name="country" id="country">
-    <br>
-    <label for="city" >City:</label>
-    <input type="text" name="city" id="city">
-    <br>
+    <input type="text" name="country" id="country" />
+    <br />
+    <label for="city">City:</label>
+    <input type="text" name="city" id="city" />
+    <br />
     <label for="price">Price:</label>
-    <input type="number" name="price" id="price">
-    <br>
+    <input type="number" name="price" id="price" />
+    <br />
     <label for="duration">Duration:</label>
-    <input type="text" name="duration" id="duration">
-    <br>
+    <input type="text" name="duration" id="duration" />
+    <br />
+    <label for="image">Image:</label>
+    <input type="file" name="image" id="image" accept="image/*" />
     <button>Submit</button>
   </form>
 </body>

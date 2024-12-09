@@ -1,12 +1,19 @@
+<link rel="stylesheet" href="../stylesheets/partials.css" />
+
 <nav>
-  <a href="/">Home</a>
-  <% if(user) {%>
-  <a href="/posts">View all Posts</a>
-  <a href="/auth/sign-out">Sign Out</a>
-  <% } else { %>
+  <ul>
+    <li><a href="/" class="directions">Home</a></li>
+    <!-- <img src="../assets/travel-buddies-logo.png" alt="logo" id="logo" /> -->
 
-  <a href="/auth/sign-up">Sign Up</a>
-  <a href="/auth/sign-in">Sign In</a>
+    <% if(user) {%>
+    <li><a href="/posts" class="directions">Posts</a></li>
 
-  <% } %>
+    <li><a href="/auth/sign-out" class="actions">Sign Out</a></li>
+    <% } else { %>
+
+    <li><a href="/auth/sign-up" class="actions">Sign Up</a></li>
+    <li><a href="/auth/sign-in" class="actions">Sign In</a></li>
+
+    <% } %>
+  </ul>
 </nav>
