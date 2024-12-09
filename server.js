@@ -28,12 +28,14 @@ app.use(
   })
 );
 app.use(passUsertoView)
+app.use(methodOverride('_method'))
 
 
 const authCtrl = require('./controllers/auth')
-
+const postsCtrl = require('./controllers/posts')
 
 app.use("/auth", authCtrl)
+app.use("/posts", postsCtrl)
 
 
 

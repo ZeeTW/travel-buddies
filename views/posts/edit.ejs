@@ -1,0 +1,19 @@
+<body>
+  <%- include('../partials/_navbar.ejs') %>
+  <h1>Edit <%= post.country %> trip!</h1>
+  <form action="/posts/<%= post._id %>?_method=PUT" method="post">
+    <label for="country">Country:</label>
+    <input type="text" name="country" id="country" value="<%= post.country %>">
+    <br>
+    <label for="city" >City:</label>
+    <input type="text" name="city" id="city" value="<%= post.city %>">
+    <br>
+    <label for="price">Price:</label>
+    <input type="number" name="price" id="price" value="<%= post.price %>">
+    <br>
+    <label for="duration">Duration:</label>
+    <input type="text" name="duration" id="duration" value="<%= post.duration %>">
+    <br>
+    <button>Submit</button>
+  </form>
+</body>

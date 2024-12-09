@@ -23,7 +23,7 @@ const userSchema = new mongoose.Schema ({
     require: true
   },
   married: {
-    type: Boolean,
+    type: String,
     require: true
   }   
 })
