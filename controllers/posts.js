@@ -50,4 +50,13 @@ router.get('/:postId/edit', async(req,res)=>{
   res.render('posts/edit.ejs', {post})
 })
 
+router.put('/:postId', async(req,res)=>{
+  const post = await Post.findById(req.params.postId)
+  if(post.owner.equals(req.session.user._id)){
+    await post.updateOne(req.body)
+    res.redirect('/posts')
+  } else {
+    res.send('you dont have permission.')
+  }
+})
 module.exports = router

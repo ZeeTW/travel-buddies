@@ -1,7 +1,7 @@
 <body>
   <%- include('../partials/_navbar.ejs') %>
   <h1>Edit <%= post.country %> trip!</h1>
-  <form>
+  <form action="/posts/<%= post._id %>?_method=PUT" method="post">
     <label for="country">Country:</label>
     <input type="text" name="country" id="country" value="<%= post.country %>">
     <br>
