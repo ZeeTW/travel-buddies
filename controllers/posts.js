@@ -29,7 +29,26 @@ router.post('/', isSignedIn, async (req,res)=>{
 router.get('/:postId', async(req,res)=>{
   const post = await Post.findById(req.params.postId).populate('owner')
 
-  res.render('posts/show.ejs', {post})
+  const userHasLiked = post.likedByUsers.some((user)=>
+  user.equals(req.session.user._id)
+  )
+
+  res.render('posts/show.ejs', {post, userHasLiked})
+})
+
+//likes
+router.post('/:postId/liked-by/:userId', async(req,res)=>{
+  await Post.findByIdAndUpdate(req.params.postId, {$push:{likedByUsers: req.params.userId}})
+  res.redirect(`/posts/${req.params.postId}`)
+})
+
+//remove like
+
+router.delete('/:postId/liked-by/:userId', async (req, res) => {
+  await Post.findByIdAndUpdate(req.params.postId, {
+    $pull: { likedByUsers: req.params.userId }
+  })
+  res.redirect(`/posts/${req.params.postId}`)
 })
 
 //delete functionality
@@ -59,4 +78,6 @@ router.put('/:postId', async(req,res)=>{
     res.send('you dont have permission.')
   }
 })
+
+
 module.exports = router

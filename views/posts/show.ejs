@@ -19,4 +19,18 @@
       <button type="submit">Delete this post</button>
     </form>
     <% } %>
+    <h2>Likes</h2>
+    <p>Liked by <%= post.likedByUsers.length %> People</p>
+    <% if (userHasLiked){%>
+      <p>You have liked this post!</p>
+      <form action="/posts/<%= post._id %>/liked-by/<%= user._id %>?_method=DELETE" method="post">
+        <button>Remove Like</button>
+      </form>
+    <%} else {%> 
+        You havent liked this post.
+      
+    <form action="/posts/<%= post._id %>/liked-by/<%= user._id %>" method="post">
+      <button type="submit">Like this post!</button>
+    </form>
+    <% } %>
 </body>
