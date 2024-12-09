@@ -22,18 +22,20 @@ mongoose.connection.on('connected', () => {
 
 app.use(
   session({
-    secret: process.env.SESSION_SECRET,
+    secret: process.env.SESSIONS_SECRET,
     resave: false,
     saveUninitialized: true,
   })
 );
 app.use(passUsertoView)
+app.use(methodOverride('_method'))
 
 
 const authCtrl = require('./controllers/auth')
-
+const postsCtrl = require('./controllers/posts')
 
 app.use("/auth", authCtrl)
+app.use("/posts", postsCtrl)
 
 
 
