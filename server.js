@@ -33,10 +33,11 @@ app.use(methodOverride('_method'))
 
 const authCtrl = require('./controllers/auth')
 const postsCtrl = require('./controllers/posts')
+const commentCtrl = require("./controllers/comments")
 
 app.use("/auth", authCtrl)
 app.use("/posts", postsCtrl)
-
+app.use("/comment", commentCtrl)
 
 
 app.get("/", async (req, res) => {

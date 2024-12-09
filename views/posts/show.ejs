@@ -14,23 +14,36 @@
   <p>Nationality: <%= post.owner.nationality %></p>
 
   <% if(post.owner._id.equals(user._id)){ %>
-    <a href="/posts/<%= post._id %>/edit">Edit this post</a>
-    <form action="/posts/<%= post._id %>?_method=DELETE" method="post">
-      <button type="submit">Delete this post</button>
-    </form>
-    <% } %>
-    <h2>Likes</h2>
-    <p>Liked by <%= post.likedByUsers.length %> People</p>
-    <% if (userHasLiked){%>
-      <p>You have liked this post!</p>
-      <form action="/posts/<%= post._id %>/liked-by/<%= user._id %>?_method=DELETE" method="post">
-        <button>Remove Like</button>
-      </form>
-    <%} else {%> 
-        You havent liked this post.
-      
-    <form action="/posts/<%= post._id %>/liked-by/<%= user._id %>" method="post">
-      <button type="submit">Like this post!</button>
-    </form>
-    <% } %>
+  <a href="/posts/<%= post._id %>/edit">Edit this post</a>
+  <form action="/posts/<%= post._id %>?_method=DELETE" method="post">
+    <button type="submit">Delete this post</button>
+  </form>
+  <% } %>
+  <h1>Add A Comment</h1>
+  <form action="/comment/<%= post._id %>/comments" method="POST">
+    <textarea name="comment" id="comment"></textarea>
+    <input type="hidden" name="postId" value="<%=post._id%>" />
+    <input type="submit" value="add comment" />
+  </form>
+  <ul>
+    <% comments.forEach(comment => { %>
+    <li><%= comment.comment %> <%= comment.owner.username %></li>
+    <% }) %>
+  </ul>
+  <h2>Likes</h2>
+  <p>Liked by <%= post.likedByUsers.length %> People</p>
+  <% if (userHasLiked){%>
+  <p>You have liked this post!</p>
+  <form
+    action="/posts/<%= post._id %>/liked-by/<%= user._id %>?_method=DELETE"
+    method="post"
+  >
+    <button>Remove Like</button>
+  </form>
+  <%} else {%> You haven't liked this post.
+
+  <form action="/posts/<%= post._id %>/liked-by/<%= user._id %>" method="post">
+    <button type="submit">Like this post!</button>
+  </form>
+  <% } %>
 </body>

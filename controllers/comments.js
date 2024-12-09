@@ -11,10 +11,34 @@ router.get('/new', async (req, res) => {
   res.render('comments/new.ejs')
 })
 
-router.post('/', async (req, res) => {
+router.post('/:postId/comments', async (req, res) => {
   req.body.owner = req.session.user._id
   await Comment.create(req.body)
-  res.redirect('/comments')
+  res.redirect(`/posts/${req.params.postId}`)
+})
+
+router.get('/:postId/comments', async (req, res) => {
+  try {
+    const comments = await Comment.find({ post: req.params.postId }).populate(
+      'owner'
+    )
+    res.render('/posts', { comments })
+  } catch (error) {
+    console.error(error)
+    res.redirect('/')
+  }
+})
+
+router.post('/:postId/comments', async (req, res) => {
+  try {
+    req.body.owner = req.session.user._id
+    console.log('req.body.postId', req.body.postId)
+    await Comment.create(req.body)
+    res.redirect(`/posts/${req.params.postId}`)
+  } catch (error) {
+    console.log(error)
+    res.redirect(`/posts/${req.params.postId}`)
+  }
 })
 
 router.delete('/:commentId', async (req, res) => {
@@ -27,7 +51,7 @@ router.delete('/:commentId', async (req, res) => {
       res.send("You don't have permission to do that.")
     }
   } catch (error) {
-    console.error(error)
+    console.log(error)
     res.redirect('/')
   }
 })

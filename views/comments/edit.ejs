@@ -6,6 +6,7 @@
     <title>Edit <%= listing.name %></title>
   </head>
   <body>
+    <%- include('../partials/_navbar.ejs') %>
     <form action="/comments/<%= listing._id %>?_method=PUT" method="POST">
       <label for="comment">Comment:</label>
       <input
