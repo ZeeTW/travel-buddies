@@ -17,7 +17,7 @@ const hashedPassword = bcrypt.hashSync(req.body.password, 10)
 req.body.password = hashedPassword
 
     const user = await User.create(req.body)
-    res.send(`Thanks for signing up, ${user.username}`)
+    res.redirect('/')
 
     
 
@@ -52,6 +52,10 @@ router.post('/sign-in', async (req, res) => {
   res.redirect('/')
 })
 
+router.get('/sign-out', (req, res) => {
+  req.session.destroy()
+  res.redirect('/')
+})
 router.get('/:profile', isSignedIn, async (req, res) => {
   try {
     const user = await User.findById(req.session.user._id)
