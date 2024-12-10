@@ -2,19 +2,22 @@ const express = require('express');
 const router = express.Router();
 const User = require('../models/user');
 const isSignedIn = require('../middleware/is-signed-in');
-const app = express()
 
-app.get('../profile/show.ejs', (req, res) => {
-  const user =  User.findById(req.session.user._id);
-    res.render('profile/show')
+
+router.get('/profile/show', async (req, res) => {
+  const user =  await User.findById(req.session.user._id);
+  console.log("user", user)
+    res.render('profile/show.ejs', { user })
 })
 
-app.get("/controllers/profile", (req, res) => {
+router.get("/controllers/profile", (req, res) => {
   if (!req.session.user) {
     return res.redirect('/auth/sign-in');
   }
 
-  res.render("profile/show.ejs", { user: req.session.user });
+  const user =  User.findById(req.session.user._id);
+
+  res.render("profile/show.ejs", { user });
 });
 
 // Show Profile
@@ -24,14 +27,14 @@ router.get('/profile', isSignedIn, async (req, res) => {
     res.render('profile/show', { user }); // Render profile/show.ejs
   } catch (error) {
     console.log(error);
-    res.status(500).send('Error loading profile');
+    
   }
-});
+})
 
 // Edit Profile
 router.get('/profile/edit', isSignedIn, async (req, res) => {
   try {
-    const user = await User.findById(req.session.user._id);
+    const user = await User.findById (req.session.user._id);
     res.render('profile/edit', { user }); // Render edit profile form
   } catch (error) {
     console.log(error);
@@ -39,22 +42,23 @@ router.get('/profile/edit', isSignedIn, async (req, res) => {
 });
 
 // Update Profile
-router.post('/profile/edit', isSignedIn, async (req, res) => {
+router.post('/profile/:id/edit', isSignedIn, async (req, res) => {
   try {
-    const { username, age, nationality, gender, married } = req.body;
-    const user = await User.findById(req.session.user._id);
+    const { username, age, nationality, gender } = req.body;
+    console.log("req.body" , req.body);
+    
+    const user = await User.findByIdAndUpdate(req.session.user._id, req.body);
 
     user.username = username || user.username;
     user.age = age || user.age;
     user.nationality = nationality || user.nationality;
     user.gender = gender || user.gender;
-    user.married = married || user.married;
 
     await user.save();
-    res.redirect('/controllers/profile'); // Redirect to profile page
+    res.redirect('/profile/show')
   } catch (error) {
     console.log(error);
-    res.status(500).send('Error updating profile');
+
   }
 });
 
@@ -65,10 +69,10 @@ router.post('/profile/delete', isSignedIn, async (req, res) => {
     req.session.destroy((err) => {
       if (err) return res.status(500).send('Error logging out');
     });
-    res.redirect('/'); // Redirect to homepage after deletion
+    res.redirect('/');
   } catch (error) {
     console.log(error);
-    res.status(500).send('Error deleting profile');
+    
   }
 });
 
