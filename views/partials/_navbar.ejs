@@ -5,11 +5,10 @@
 <nav>
   <ul>
     <li><a href="/" class="directions">Home</a></li>
-    <!-- <img src="../assets/travel-buddies-logo.png" alt="logo" id="logo" /> -->
 
     <% if (user) {%>
-    <a href="/profile/show">Profile</a>
     <li><a href="/posts" class="directions">Posts</a></li>
+    <li><a href="/profile/show" class="directions">Profile</a></li>
 
     <li><a href="/auth/sign-out" class="actions">Sign Out</a></li>
     <% } else { %>
