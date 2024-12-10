@@ -1,26 +1,30 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Posts</title>
-</head>
-<body>
-  <%- include('../partials/_navbar.ejs') %>
-  <h1>Here are all the available posts</h1>
-  <ul>
-    <% posts.forEach((post)=>{%>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>Posts</title>
+  </head>
+  <body>
+    <%- include('../partials/_navbar.ejs') %>
+    <h1>Here are all the available posts</h1>
+    <ul>
+      <% posts.forEach((post)=>{%>
       <li>
         A trip to <%= post.country%>, <%= post.city %>.
-        <br>
+        <br />
+        <img src="<%= post.image %>" alt="trip image" width="500" />
+        <br />
+
         Created by: <%= post.owner.username %>
-        <br>
+        <br />
         <a href="/posts/<%= post._id %>">View Trip Details</a>
       </li>
-   <% }) %>
-  </ul>
-  <% if (user) {%>
-  <a href="/posts/new">Add a New Post</a>
-  <% } %>
-</body>
+      <% }) %>
+    </ul>
+    <% if (user) {%>
+    <a href="/posts/new">Add a New Post</a>
+    <% } %>
+  </body>
 </html>

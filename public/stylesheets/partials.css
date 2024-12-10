@@ -1,0 +1,32 @@
+ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  font-family: 'Montserrat', sans-serif;
+  font-optical-sizing: auto;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 18px;
+}
+
+.directions {
+  float: left;
+}
+
+.actions {
+  float: right;
+}
+
+li a {
+  display: block;
+  color: #333;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+  font-size: 16px;
+}
+
+li a:hover {
+  text-decoration: underline;
+}
