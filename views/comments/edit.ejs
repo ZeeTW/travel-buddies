@@ -3,17 +3,19 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Edit <%= listing.name %></title>
+    <title>Edit <%= comment.comment %></title>
   </head>
   <body>
     <%- include('../partials/_navbar.ejs') %>
-    <form action="/comments/<%= listing._id %>?_method=PUT" method="POST">
+    <form action="/comment/<%= comment._id %>?_method=PUT" method="POST">
       <label for="comment">Comment:</label>
       <input
         type="text"
         name="comment"
         id="comment"
         value="<%= comment.comment %>"
-/>
+      />
       <button type="submit">Edit Comment</button>
-      </form>
+    </form>
+  </body>
+</html>

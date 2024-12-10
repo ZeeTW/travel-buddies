@@ -46,13 +46,12 @@ router.delete('/:commentId', async (req, res) => {
     const comment = await Comment.findById(req.params.commentId)
     if (comment.owner.equals(req.session.user._id)) {
       await comment.deleteOne()
-      res.redirect('/comments')
+      res.redirect('/posts')
     } else {
       res.send("You don't have permission to do that.")
     }
   } catch (error) {
     console.log(error)
-    res.redirect('/')
   }
 })
 
@@ -73,13 +72,13 @@ router.put('/:commentId', async (req, res) => {
     const currentComment = await Comment.findById(req.params.commentId)
     if (currentComment.owner.equals(req.session.user._id)) {
       await currentComment.updateOne(req.body)
-      res.redirect('/comments')
+      res.redirect('/posts')
     } else {
       res.send("You don't have permission to do that.")
     }
   } catch (error) {
     console.log(error)
-    res.redirect('/')
+    res.redirect('/posts')
   }
 })
 

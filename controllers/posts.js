@@ -33,10 +33,14 @@ router.get('/:postId', async (req, res) => {
     user.equals(req.session.user._id)
   )
 
-  const comments = await Comment.find({ postId: req.params.postId })
+  const comments = await Comment.find({ postId: req.params.postId }).populate(
+    'owner'
+  )
   console.log('comments', comments)
   res.render('posts/show.ejs', { post, userHasLiked, comments })
 })
+
+
 
 //likes
 router.post('/:postId/liked-by/:userId', async (req, res) => {
