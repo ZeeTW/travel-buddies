@@ -59,12 +59,17 @@ app.post('/create-post', upload.single('image'), async (req, res) => {
 const authCtrl = require('./controllers/auth')
 const postsCtrl = require('./controllers/posts')
 
+const profileCtrl = require('./controllers/profile')
 app.use('/auth', authCtrl)
 app.use('/posts', postsCtrl)
+app.use('/', profileCtrl)
 
 app.get('/', async (req, res) => {
   res.render('index.ejs')
 })
+
+app.set('view engine', 'ejs')
+app.set('views')
 
 app.listen(PORT, () => {
   console.log('travel buddies is working')
