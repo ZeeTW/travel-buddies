@@ -1,12 +1,20 @@
+<link rel="stylesheet" href="../stylesheets/partials.css" />
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Press+Start+2P&display=swap');
+</style>
 <nav>
-  <a href="/">Home</a>
-  <% if (user) {%>
-    <a href="/profile/show">Profile</a>
-  <a href="/posts">View all Posts</a>
-  <a href="/auth/sign-out">Sign Out</a>
-  <% } else { %>
-  <a href="/auth/sign-up">Sign Up</a>
-  <a href="/auth/sign-in">Sign In</a>
+  <ul>
+    <li><a href="/" class="directions">Home</a></li>
 
-  <% } %>
+    <% if (user) {%>
+    <li><a href="/posts" class="directions">Posts</a></li>
+    <li><a href="/profile/show" class="directions">Profile</a></li>
+
+    <li><a href="/auth/sign-out" class="actions">Sign Out</a></li>
+    <% } else { %>
+    <li><a href="/auth/sign-up" class="actions">Sign Up</a></li>
+    <li><a href="/auth/sign-in" class="actions">Sign In</a></li>
+
+    <% } %>
+  </ul>
 </nav>

@@ -1,5 +1,6 @@
 const express = require('express')
 const router = express.Router()
+const upload = require('../server')
 
 //Import Model
 const Post = require('../models/post')
@@ -11,7 +12,7 @@ const isSignedIn = require('../middleware/is-signed-in')
 //landing post page
 router.get('/', async (req, res) => {
   const posts = await Post.find({}).populate('owner')
-  res.render('posts/index.ejs', { posts })
+  res.render('posts/index.ejs', {  posts  })
 })
 
 //create a new post
@@ -19,9 +20,26 @@ router.get('/new', isSignedIn, async (req, res) => {
   res.render('posts/new.ejs')
 })
 
-router.post('/', isSignedIn, async (req, res) => {
-  req.body.owner = req.session.user._id
-  await Post.create(req.body)
+// router.post('/', isSignedIn, upload.single('image'), async (req, res) => {
+//   req.body.owner = req.session.user._id
+//   await Post.create(req.body)
+//   res.redirect('/posts')
+// })
+
+router.post('/', isSignedIn, upload.single('image'), async (req, res) => {
+  const { country, city, price, duration } = req.body
+
+  const image = req.file ? `/uploads/${req.file.filename}` : null
+
+  await Post.create({
+    country,
+    city,
+    price,
+    duration,
+    image,
+    owner: req.session.user._id
+  })
+
   res.redirect('/posts')
 })
 

@@ -1,21 +1,23 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
-</head>
-<body>
-  <%- include('./partials/_navbar.ejs') %>
-  <nav>
-    <ul>
-      <% if (user) { %>
-      
-    <% } %>
-    </ul>
-  </nav>
-  <h1>Welcome to travel buddies</h1>
-  
-  
-</body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/stylesheets/style.css" />
+    <style>
+      @import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Press+Start+2P&display=swap');
+    </style>
+    <title>Document</title>
+  </head>
+  <body>
+    <%- include('./partials/_navbar.ejs') %>
+    <div id="hero">
+      <div class="hero-text">
+        <h1>Explore cities like never before</h1>
+        <h4>A place to find lifelong travel buddies</h4>
+        <br /><br /><br />
+        <a href="/auth/sign-up" id="hero-link">Join Now</a>
+      </div>
+    </div>
+  </body>
 </html>
