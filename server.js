@@ -4,13 +4,13 @@ const express = require('express')
 const session = require('express-session')
 const isSignedIn = require('./middleware/is-signed-in')
 const passUsertoView = require('./middleware/pass-user-to-view')
-
 const app = express()
 
 
 const mongoose = require('mongoose')
 const methodOverride = require('method-override')
 app.use(express.urlencoded({ extended: false }))
+
 
 //port config
 const PORT = process.env.PORT ? process.env.PORT : '3000'
@@ -34,14 +34,19 @@ app.use(methodOverride('_method'))
 const authCtrl = require('./controllers/auth')
 const postsCtrl = require('./controllers/posts')
 
+const profileCtrl = require('./controllers/profile')
 app.use("/auth", authCtrl)
 app.use("/posts", postsCtrl)
+app.use('/', profileCtrl)
 
 
 
 app.get("/", async (req, res) => {
   res.render('index.ejs');
 });
+
+app.set('view engine', 'ejs')
+app.set('views', )
 
 app.listen(PORT, ()=>{
   console.log('travel buddies is working')
