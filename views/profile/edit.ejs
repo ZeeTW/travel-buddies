@@ -1,20 +1,24 @@
 <h1>Edit Your Profile</h1>
-<form action="/auth/edit-profile" method="POST">
+<form action="/profile/ <%= user._id %> /edit"  method="POST">
   <label for="Username">Username:</label>
-  <input type="text" name="Username" id="Username" value="<%= user.username %>">
+  <input type="text" name="username" id="Username" value="<%= user.username %>">
 
   <br>
 
   <label for="Age">Age:</label>
-  <input type="number" name="Age" value="<%= user.age %>">
+  <input type="number" name="age" value="<%= user.age %>">
 
   <br>
 
   <label for="Nationality">Nationality:</label>
-  <input type="text" name="Nationality" id="Nationality" value="<%= user.nationality %>">
+  <input type="text" name="nationality" id="Nationality" value="<%= user.nationality %>">
 
   <br>
 
   <label for="Gender">Gender</label>
-  <input type="text" name="Gender" id="Gender" value="<%= user.gender %>">
+  <input type="text" name="gender" id="Gender" value="<%= user.gender %>">
+
+  <br>
+
+  <button type="submit">Update</button>
 </form>
