@@ -2,7 +2,7 @@
   background-image: linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)),
     url('/assets/background.jpg');
   border-radius: 20px;
-  height: 80vh;
+  height: 85vh;
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
@@ -15,4 +15,30 @@
   align-items: center; /* Centers the text vertically */
   text-align: left; /* Align text to the left */
   flex-direction: column;
+}
+.hero-text {
+  text-align: left;
+  position: absolute;
+  top: 40%;
+  left: 30%;
+  transform: translate(-50%, -50%);
+  color: white;
+  font-family: 'Montserrat', sans-serif;
+  font-optical-sizing: auto;
+  font-style: normal;
+  font-size: 20px;
+}
+
+#hero-link {
+  text-decoration: none;
+  padding: 12px 20px;
+  border-radius: 25px;
+  background-color: white;
+  color: black;
+}
+
+#hero-link:hover {
+  background-color: black;
+  background-image: linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2));
+  color: white;
 }

@@ -3,6 +3,11 @@ ul {
   margin: 0;
   padding: 0;
   overflow: hidden;
+  font-family: 'Montserrat', sans-serif;
+  font-optical-sizing: auto;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 18px;
 }
 
 .directions {
@@ -23,5 +28,5 @@ li a {
 }
 
 li a:hover {
-  font-size: 18px;
+  text-decoration: underline;
 }
