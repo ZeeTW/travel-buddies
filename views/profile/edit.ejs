@@ -1,3 +1,4 @@
+<body>
 <%- include('../partials/_navbar.ejs') %>
 
 <link rel="stylesheet" href="/stylesheets/profile.css" />
@@ -7,10 +8,14 @@
 
 <form action="/profile/ <%= user._id %> /edit"  method="POST" enctype="multipart/form-data">
   <% console.log("this is userimage",user.profileImage) %>
-  <img src="/uploads/<%= user.profileImage %>" alt="Profile image" />
+  <div class="profile-info">
+    <img src="/uploads/<%= user.profileImage %>" alt="profile picture" />
+    <div>
   <input type="file" name="image" id="image" accept="image/*" />
+  <div>
   <label for="Username">Username:</label>
   <input type="text" name="username" id="Username" value="<%= user.username %>">
+</div>
 
   <br>
 
@@ -28,9 +33,19 @@
 
   <br>
 
-  <div class="form-group">
-  <label for="Gender" class="label">Gender</label>
-  <input type="text" name="gender" id="Gender" value="<%= user.gender %>" class="form-control" required>
+  <div>
+    <label class="label" for="gender">Gender:</label>
+    <select name="gender" id="gender" class="value">
+      <option value="Male" <%= user.gender === "Male" ? "selected" : "" %>>
+        Male
+      </option>
+      <option
+        value="Female"
+        <%= user.gender === "Female" ? "selected" : "" %>
+      >
+        Female
+      </option>
+    </select>
 </div>
 
   <br>
@@ -39,5 +54,7 @@
   <button type="submit" class="button edit">Update</button>
   <a href="/profile/show" class="button cancel">Cancel</a>
 </div>
+</div>
 </form>
 </div>
+</body>
