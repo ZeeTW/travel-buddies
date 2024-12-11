@@ -1,0 +1,20 @@
+<link rel="stylesheet" href="../stylesheets/partials.css" />
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Press+Start+2P&display=swap');
+</style>
+<nav>
+  <ul>
+    <li><a href="/" class="directions white-nav">Home</a></li>
+
+    <% if (user) {%>
+    <li><a href="/posts" class="directions white-nav">Posts</a></li>
+    <li><a href="/profile/show" class="directions white-nav">Profile</a></li>
+
+    <li><a href="/auth/sign-out" class="actions white-nav">Sign Out</a></li>
+    <% } else { %>
+    <li><a href="/auth/sign-up" class="actions white-nav">Sign Up</a></li>
+    <li><a href="/auth/sign-in" class="actions white-nav">Sign In</a></li>
+
+    <% } %>
+  </ul>
+</nav>

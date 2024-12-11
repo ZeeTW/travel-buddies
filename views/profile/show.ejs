@@ -2,25 +2,10 @@
   <%- include('../partials/_navbar.ejs') %>
   <link rel="stylesheet" href="/stylesheets/profile.css" />
 
-
-  <h1>Your Profile</h1>
-  
-  <p><strong>Username:</strong> <%= user.username %></p>
-  <p><strong>Age:</strong> <%= user.age %></p>
-  <p><strong>Nationality:</strong> <%= user.nationality %></p>
-  <p><strong>Gender:</strong> <%= user.gender %></p>
-
-  <a href="/profile/edit">Edit Profile</a>
-  <form action="/profile/delete" method="POST">
-    <button type="submit" onclick="return confirm('Are you sure you want to delete the profile?!')">
-      Delete Profile
-    </button>
-  </form>
-
   <div class="profile-container">
     <h1>User Profile</h1>
     <div class="profile-info">
-    <img src="/uploads/<%= user.profileImage %>" alt="profile picture" />
+      <img src="/uploads/<%= user.profileImage %>" alt="profile picture" />
       <div>
         <span class="label">Username:</span>
         <span class="value"><%= user.username %></span>
@@ -40,8 +25,12 @@
     </div>
     <div class="profile-actions">
       <a href="/profile/edit" class="button edit">Edit Profile</a>
-      <form action="/profile/delete" method="POST" style="display:inline;">
-        <button type="submit" class="button delete" onclick="return confirm('Are you sure you want to delete the profile?!')">
+      <form action="/profile/delete" method="POST" style="display: inline">
+        <button
+          type="submit"
+          class="button delete"
+          onclick="return confirm('Are you sure you want to delete the profile?!')"
+        >
           Delete Profile
         </button>
       </form>
