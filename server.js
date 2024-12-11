@@ -58,11 +58,13 @@ app.post('/create-post', upload.single('image'), async (req, res) => {
 
 const authCtrl = require('./controllers/auth')
 const postsCtrl = require('./controllers/posts')
-
 const profileCtrl = require('./controllers/profile')
+const commentCtrl = require('./controllers/comments')
+
 app.use('/auth', authCtrl)
 app.use('/posts', postsCtrl)
 app.use('/', profileCtrl)
+app.use('/comment', commentCtrl)
 
 app.get('/', async (req, res) => {
   res.render('index.ejs')

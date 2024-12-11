@@ -1,0 +1,10 @@
+<body>
+  <%- include('../partials/_navbar.ejs') %>
+  <h1>Add a new comment</h1>
+  <form action="/comment" method="POST">
+    <label for="comments">Comments:</label>
+    <textarea id="comment" name="comment" rows="4" cols="50">
+    </textarea>
+    <button type="submit">Add Comment</button>
+  </form>
+</body>
