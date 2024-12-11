@@ -2,6 +2,7 @@
   <%- include('../partials/_navbar.ejs') %>
 
   <h1>Your Profile</h1>
+  <img src="/uploads/<%= user.profileImage %>" alt="profile picture" />
   <p><strong>Username:</strong> <%= user.username %></p>
   <p><strong>Age:</strong> <%= user.age %></p>
   <p><strong>Nationality:</strong> <%= user.nationality %></p>

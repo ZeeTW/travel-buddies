@@ -2,6 +2,8 @@ const express = require('express');
 const router = express.Router();
 const User = require('../models/user');
 const isSignedIn = require('../middleware/is-signed-in');
+const upload = require('../server')
+
 router.get('/profile/show', async (req, res) => {
   const user =  await User.findById(req.session.user._id);
   console.log("user", user)
@@ -33,15 +35,19 @@ router.get('/profile/edit', isSignedIn, async (req, res) => {
   }
 });
 // Update Profile
-router.post('/profile/:id/edit', isSignedIn, async (req, res) => {
+router.post('/profile/:id/edit', isSignedIn, upload.single('image'), async (req, res) => {
   try {
     const { username, age, nationality, gender } = req.body;
+    req.body.profileImage=req.file.filename
     console.log("req.body" , req.body);
     const user = await User.findByIdAndUpdate(req.session.user._id, req.body);
     user.username = username || user.username;
     user.age = age || user.age;
     user.nationality = nationality || user.nationality;
     user.gender = gender || user.gender;
+
+
+
     await user.save();
     res.redirect('/profile/show')
   } catch (error) {
