@@ -46,26 +46,26 @@ router.post('/', isSignedIn, upload.single('image'), async (req, res) => {
 router.get('/:postId', async (req, res) => {
   const post = await Post.findById(req.params.postId).populate('owner')
 
-  const userHasLiked = post.likedByUsers.some((user) =>
+  const userHasJoined = post.joinedByUsers.some((user) =>
     user.equals(req.session.user._id)
   )
 
-  res.render('posts/show.ejs', { post, userHasLiked })
+  res.render('posts/show.ejs', { post, userHasJoined })
 })
 
 //likes
-router.post('/:postId/liked-by/:userId', async (req, res) => {
+router.post('/:postId/joined-by/:userId', async (req, res) => {
   await Post.findByIdAndUpdate(req.params.postId, {
-    $push: { likedByUsers: req.params.userId }
+    $push: { joinedByUsers: req.params.userId }
   })
   res.redirect(`/posts/${req.params.postId}`)
 })
 
 //remove like
 
-router.delete('/:postId/liked-by/:userId', async (req, res) => {
+router.delete('/:postId/joined-by/:userId', async (req, res) => {
   await Post.findByIdAndUpdate(req.params.postId, {
-    $pull: { likedByUsers: req.params.userId }
+    $pull: { joinedByUsers: req.params.userId }
   })
   res.redirect(`/posts/${req.params.postId}`)
 })

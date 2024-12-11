@@ -24,13 +24,12 @@ const postSchema = new mongoose.Schema({
   image: {
     type: String
   },
-  likedByUsers: [
-  {
-    type: mongoose.Schema.Types.ObjectId,
-    ref: 'User'
-  }
-  ],
-  
+  joinedByUsers: [
+    {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: 'User'
+    }
+  ]
 })
 
 const Post = mongoose.model('Post', postSchema)
