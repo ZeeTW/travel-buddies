@@ -4,11 +4,13 @@
 
 <div class="profile-container">
 <h1>Edit Your Profile</h1>
-<form action="/profile/ <%= user._id %> /edit"  method="POST" class="profile-form">
-  <div class="form-group">
-  <label for="Username" class="label">Username:</label>
-  <input type="text" name="username" id="Username" value="<%= user.username %>" class="form-control" required>
-</div>
+
+<form action="/profile/ <%= user._id %> /edit"  method="POST" enctype="multipart/form-data">
+  <% console.log("this is userimage",user.profileImage) %>
+  <img src="/uploads/<%= user.profileImage %>" alt="Profile image" />
+  <input type="file" name="image" id="image" accept="image/*" />
+  <label for="Username">Username:</label>
+  <input type="text" name="username" id="Username" value="<%= user.username %>">
 
   <br>
 

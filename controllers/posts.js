@@ -4,6 +4,7 @@ const upload = require('../server')
 
 //Import Model
 const Post = require('../models/post')
+const Comment = require('../models/comment')
 const isSignedIn = require('../middleware/is-signed-in')
 
 //Routes/ API's / Core Functionality
@@ -50,7 +51,11 @@ router.get('/:postId', async (req, res) => {
     user.equals(req.session.user._id)
   )
 
-  res.render('posts/show.ejs', { post, userHasJoined })
+  const comments = await Comment.find({ postId: req.params.postId }).populate(
+    'owner'
+  )
+  console.log('comments', comments)
+  res.render('posts/show.ejs', { post, userHasJoined, comments })
 })
 
 //likes

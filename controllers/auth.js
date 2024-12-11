@@ -2,15 +2,16 @@ const express = require('express')
 const router = express.Router()
 const bcrypt = require('bcrypt')
 const User = require('../models/user')
+const upload = require('../server')
 //routes/API/Controller functions
 router.get('/sign-up', (req, res) => {
   res.render('auth/sign-up.ejs')
 })
-router.post('/sign-up', async (req, res) => {
+router.post('/sign-up',  async (req, res) => {
   try {
-//bcrypt for password encryption
-const hashedPassword = bcrypt.hashSync(req.body.password, 10)
-req.body.password = hashedPassword
+    //bcrypt for password encryption
+    const hashedPassword = bcrypt.hashSync(req.body.password, 10)
+    req.body.password = hashedPassword
     const user = await User.create(req.body)
     res.redirect('/')
   } catch (error) {
