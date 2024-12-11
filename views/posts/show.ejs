@@ -14,48 +14,61 @@
 <body id="show-body">
   <%- include('../partials/_navbar.ejs') %>
   <div class="main-div">
-    <h1>A Trip in <%= post.country %>, <%= post.city %></h1>
+    <div class="topbar">
+      <section>
+        <h1 class="heading">A Trip in <%= post.city %>, <%= post.country %></h1>
+      </section>
+      <section class="left">
+        <% if(post.owner._id.equals(user._id)){ %>
 
+        <a href="/posts/<%= post._id %>/edit" class="btnlink actions"
+          >Edit this post</a
+        >
+        <form
+          action="/posts/<%= post._id %>?_method=DELETE"
+          method="post"
+          class="mid-btn"
+        >
+          <button type="submit" class="btn btn-primary sign-btn actions">
+            Delete this post
+          </button>
+        </form>
+        <% } %>
+      </section>
+    </div>
     <img src="<%= post.image %>" alt="trip image" class="details-img" />
-
-    <h2>Details</h2>
-    <p>Price: $ <%= post.price %></p>
-    <p>Duration: <%= post.duration %></p>
-
-    <h2>User details:</h2>
-
-    <p>Username: <%= post.owner.username %></p>
-    <p>Age: <%= post.owner.age %></p>
-    <p>Nationality: <%= post.owner.nationality %></p>
-
-    <h2>People who joined</h2>
-    <p><%= post.joinedByUsers.length %> People joined this trip</p>
-    <% if (userHasJoined){%>
-    <p>You have joined this trip!</p>
-    <form
-      action="/posts/<%= post._id %>/joined-by/<%= user._id %>?_method=DELETE"
-      method="post"
-    >
-      <button class="btn btn-primary sign-btn">Leave Trip</button>
-    </form>
-    <%} else {%> You havent joined this trip.
-
-    <form
-      action="/posts/<%= post._id %>/joined-by/<%= user._id %>"
-      method="post"
-    >
-      <button type="submit" class="btn btn-primary sign-btn">
-        Join this trip!
-      </button>
-    </form>
-    <% } %>
+    <div class="details">
+      <p class="p">Price: $ <%= post.price %></p>
+      <p class="p">Duration: <%= post.duration %></p>
+    </div>
+    <div class="details">
+      <p class="p heading">User details:</p>
+      <p class="p">Username: <%= post.owner.username %></p>
+      <p class="p">Age: <%= post.owner.age %></p>
+      <p class="p">Nationality: <%= post.owner.nationality %></p>
+    </div>
+    <p class="p heading">
+      <%= post.joinedByUsers.length %> People joined this trip
+    </p>
     <div class="mid2">
-      <% if(post.owner._id.equals(user._id)){ %>
+      <% if (userHasJoined){%>
+      <p class="p2">You have joined this trip!</p>
 
-      <a href="/posts/<%= post._id %>/edit" class="btnlink">Edit this post</a>
-      <form action="/posts/<%= post._id %>?_method=DELETE" method="post">
-        <button type="submit" class="btn btn-primary sign-btn">
-          Delete this post
+      <form
+        action="/posts/<%= post._id %>/joined-by/<%= user._id %>?_method=DELETE"
+        method="post"
+      >
+        <button class="btn btn-primary sign-btn">Leave Trip</button>
+      </form>
+      <%} else {%>
+      <p class="p2">You havent joined this trip.</p>
+
+      <form
+        action="/posts/<%= post._id %>/joined-by/<%= user._id %>"
+        method="post"
+      >
+        <button type="submit" class="btn btn-primary sign-btn p2">
+          Join this trip!
         </button>
       </form>
       <% } %>

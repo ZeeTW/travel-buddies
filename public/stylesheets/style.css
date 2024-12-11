@@ -184,3 +184,31 @@ body {
 .white-bg-form {
   background-color: #ddd;
 }
+.details {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+}
+.p {
+  font-family: 'Montserrat', sans-serif;
+  text-align: center;
+  margin-bottom: 20px;
+  font-size: 1.5rem;
+}
+.heading {
+  font-weight: 500;
+  font-family: 'Montserrat', sans-serif;
+}
+.p2 {
+  font-size: 1.3rem;
+  font-family: 'Montserrat', sans-serif;
+  text-align: center;
+}
+.topbar {
+  display: flex;
+  justify-content: space-between;
+}
+.left {
+  display: flex;
+  gap: 10px;
+}
