@@ -1,14 +1,17 @@
+<link rel="stylesheet" href="/stylesheets/style.css" />
+<link rel="stylesheet" href="/stylesheets/partials.css" />
+
 <body>
   <%- include('../partials/_navbar.ejs') %>
   <h1>Here's All The Comments</h1>
   <ul>
     <% comments.forEach((comment) => { %>
-      <li>
-        A comment in <%= comment.owner %> <%= comment.comment %> comment by <%= comment.owner.postId %>
-        <a href="/comments/<%= comment._id %>">View more details</a>
-      </li>
+    <li>
+      A comment in <%= comment.owner %> <%= comment.comment %> comment by <%=
+      comment.owner.postId %>
+      <a href="/comments/<%= comment._id %>">View more details</a>
+    </li>
     <% }) %>
-  <a href="/comments/new">Add a New Comment</a>
-  
+    <a href="/comments/new">Add a New Comment</a>
   </ul>
 </body>
