@@ -1,24 +1,41 @@
+<%- include('../partials/_navbar.ejs') %>
+
+<link rel="stylesheet" href="/stylesheets/profile.css" />
+
+<div class="profile-container">
 <h1>Edit Your Profile</h1>
-<form action="/profile/ <%= user._id %> /edit"  method="POST">
-  <label for="Username">Username:</label>
-  <input type="text" name="username" id="Username" value="<%= user.username %>">
+<form action="/profile/ <%= user._id %> /edit"  method="POST" class="profile-form">
+  <div class="form-group">
+  <label for="Username" class="label">Username:</label>
+  <input type="text" name="username" id="Username" value="<%= user.username %>" class="form-control" required>
+</div>
 
   <br>
 
-  <label for="Age">Age:</label>
-  <input type="number" name="age" value="<%= user.age %>">
+  <div class="form-group">
+  <label for="Age" class="label">Age:</label>
+  <input type="number" name="age" value="<%= user.age %>" class="form-control" required>
+</div>
 
   <br>
 
-  <label for="Nationality">Nationality:</label>
-  <input type="text" name="nationality" id="Nationality" value="<%= user.nationality %>">
+  <div class="form-group">
+  <label for="Nationality" class="label">Nationality:</label>
+  <input type="text" name="nationality" id="Nationality" value="<%= user.nationality %>" class="form-control" required>
+</div>
 
   <br>
 
-  <label for="Gender">Gender</label>
-  <input type="text" name="gender" id="Gender" value="<%= user.gender %>">
+  <div class="form-group">
+  <label for="Gender" class="label">Gender</label>
+  <input type="text" name="gender" id="Gender" value="<%= user.gender %>" class="form-control" required>
+</div>
 
   <br>
 
-  <button type="submit">Update</button>
+<div style="text-align: center; margin-top: 20px;">
+  <button type="submit" class="button edit">Update</button>
+  <a href="/profile/show" class="button cancel">Cancel</a>
+</div>
 </form>
+</div>
